@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藥你管｜寵物健康與用藥管理</title>
+<meta name="description" content="藥你管:讓寵物健康管理更簡單,讓每一份照護都有跡可循。">
+<meta name="theme-color" content="#d9f0fa">
+<!-- 可愛圓體字型「粉圓 Huninn」;沒網路時會自動改用系統字型 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">🐾 藥你管</a>
+    <button class="burger" id="burger" aria-label="開啟選單" aria-expanded="false">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#problems">飼主困難</a></li>
+      <li><a href="#features">功能構想</a></li>
+      <li><a href="#preview">畫面概念</a></li>
+      <li><a href="#species">特殊寵物</a></li>
+      <li><a href="#users">使用對象</a></li>
+      <li><a href="#interview">訪談</a></li>
+      <li><a href="demo.html" class="try">🧪 試用</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ① 首頁 -->
+<div class="hero" id="top">
+  <span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span>
+  <span class="bubble b4"></span><span class="bubble b5"></span>
+  <div class="wrap">
+    <span class="badge">畢業專題・概念階段</span>
+    <h1>藥你管 <span class="paw">🐾</span></h1>
+    <p class="sub">讓寵物健康管理更簡單,讓每一份照護都有跡可循。</p>
+    <p class="desc">「藥你管」是一個以寵物健康與用藥管理為核心的系統構想,希望透過數位化的方式,協助飼主整理寵物的健康資訊、用藥紀錄及日常照護資料,減少照顧過程中可能發生的遺漏與混亂。</p>
+    <p class="desc">我們希望讓飼主能夠更方便地掌握寵物的健康狀況,也讓獸醫在看診時能取得更完整的相關資訊。</p>
+    <p class="cta"><a class="btn" href="demo.html">🧪 立即試用互動示範</a></p>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#f3fafd" d="M0,40 C240,90 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z"/>
+  </svg>
+</div>
+
+<!-- ② 困難 -->
+<section id="problems">
+  <div class="wrap">
+    <h2><span class="num">2</span>飼主在照顧寵物時可能遇到的困難</h2>
+    <p class="lead">以下為我們的初步推測,將透過獸醫訪談驗證。</p>
+    <div class="grid">
+      <div class="card"><span class="ico">💊</span><h3>1. 用藥管理不易</h3><ul>
+        <li>需按獸醫指示定時餵藥,忙碌時容易忘記。</li>
+        <li>不同藥物的使用時間與頻率不同,容易記錯或搞混。</li>
+        <li>多隻寵物或多種藥物同時管理,負擔增加。</li>
+        <li>不清楚過去用過哪些藥,難以快速回顧。</li></ul></div>
+      <div class="card"><span class="ico">📈</span><h3>2. 健康紀錄不完整</h3><ul>
+        <li>沒有固定記錄體重、食慾、活動力及排便狀況。</li>
+        <li>寵物異常時,難以回想症狀從何時開始。</li>
+        <li>過去的檢查結果與資訊分散各處。</li></ul></div>
+      <div class="card"><span class="ico">🏥</span><h3>3. 就醫資訊容易遺漏</h3><ul>
+        <li>看診時忘記告知病史或曾用藥物。</li>
+        <li>不一定記得上次看診日期、檢查結果與醫囑。</li>
+        <li>各次看診資料缺乏整理,難以看出長期變化。</li></ul></div>
+      <div class="card"><span class="ico">📚</span><h3>4. 寵物照護知識不足</h3><ul>
+        <li>不同種類寵物習性與需求不同,飼主未必清楚。</li>
+        <li>網路資訊眾多,難以判斷正確性。</li>
+        <li>出現異常時,不知如何處理或何時該就醫。</li></ul></div>
+      <div class="card"><span class="ico">🐾</span><h3>5. 多隻寵物管理不方便</h3><ul>
+        <li>需分別管理每隻寵物的健康與用藥資料。</li>
+        <li>容易混淆不同寵物的藥物或看診紀錄。</li>
+        <li>家人共同照顧時資訊不同步,可能重複餵藥或遺漏。</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ③ 功能 -->
+<section id="features" class="alt">
+  <div class="wrap">
+    <h2><span class="num">3</span>初步系統功能構想</h2>
+    <p class="lead">針對上述問題規劃的五大功能。</p>
+    <div class="grid">
+      <div class="card"><span class="ico">🪪</span><h3>1. 寵物基本資料管理</h3><ul>
+        <li>建立寵物個人檔案。</li><li>記錄名稱、種類、生日、體重等資訊。</li><li>支援多隻寵物個別管理。</li></ul></div>
+      <div class="card"><span class="ico">⏰</span><h3>2. 用藥管理與提醒</h3><ul>
+        <li>記錄獸醫開立的藥物名稱及使用方式。</li><li>設定用藥提醒,協助按時餵藥。</li><li>保存過去用藥紀錄,方便查詢。</li></ul></div>
+      <div class="card"><span class="ico">🩺</span><h3>3. 寵物健康紀錄</h3><ul>
+        <li>記錄體重、食慾、活動力及日常狀況。</li><li>保存健康變化。</li><li>整理長期健康資訊。</li></ul></div>
+      <div class="card"><span class="ico">📋</span><h3>4. 就診與檢查紀錄</h3><ul>
+        <li>記錄看診日期、原因及獸醫注意事項。</li><li>保存檢查結果及相關資料。</li><li>方便回顧過去就醫紀錄。</li></ul></div>
+      <div class="card"><span class="ico">📖</span><h3>5. 寵物照護資訊</h3><ul>
+        <li>提供各種類寵物的基本照護資訊。</li><li>整理日常照顧與健康管理知識。</li><li>協助尋找可靠的照護資訊。</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 畫面概念 -->
+<section id="preview">
+  <div class="wrap">
+    <h2><span class="num">★</span>畫面概念預覽</h2>
+    <p class="lead">示意圖,資料皆為虛構,用來和獸醫討論「這樣的功能實用嗎?」</p>
+    <div class="mock">
+      <div class="phone">
+        <h4>今日用藥提醒</h4>
+        <div class="pet"><span class="face">🐰</span><div><b>麻糬(兔子・1.5kg)</b><small>今天有 2 項待辦</small></div></div>
+        <div class="med"><span>08:00 藥物 A(示意)<br><small>口服・0.3 ml</small></span><span class="pill">已完成</span></div>
+        <div class="med"><span>20:00 藥物 A(示意)<br><small>口服・0.3 ml</small></span><span class="pill warn">待餵藥</span></div>
+      </div>
+      <div class="phone">
+        <h4>健康紀錄・體重趨勢</h4>
+        <div class="pet"><span class="face">🦎</span><div><b>小綠(鬃獅蜥)</b><small>最近 4 週</small></div></div>
+        <small>第 1 週 420 g</small><div class="bar"><i style="width:84%"></i></div>
+        <small>第 2 週 410 g</small><div class="bar"><i style="width:82%"></i></div>
+        <small>第 3 週 395 g</small><div class="bar"><i style="width:79%"></i></div>
+        <small>第 4 週 380 g <span class="pill warn">下降提醒</span></small><div class="bar"><i style="width:76%"></i></div>
+      </div>
+      <div class="phone">
+        <h4>看診摘要(給獸醫看)</h4>
+        <div class="med"><span>近期症狀</span><span class="pill">食慾下降 3 天</span></div>
+        <div class="med"><span>使用中藥物</span><span class="pill">1 項</span></div>
+        <div class="med"><span>最近一次看診</span><span class="pill">2026/10/20</span></div>
+        <div class="med"><span>飼養環境</span><span class="pill">溫濕度紀錄</span></div>
+        <div class="med"><span>注意事項</span><span class="pill">醫囑已存</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 特殊寵物 -->
+<section id="species" class="alt">
+  <div class="wrap">
+    <h2><span class="num">★</span>特殊寵物的需求假設</h2>
+    <p class="lead">我們希望專題與一般貓狗系統有所區隔,聚焦在「特殊寵物」。</p>
+    <div class="note">⚠️ 以下內容為團隊依資料整理的「假設」,尚未經專業驗證,將於獸醫訪談中確認與修正。本站不提供任何醫療建議。</div>
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-target="p1">🐰 兔子・小型囓齒類</button>
+      <button class="tab" data-target="p2">🦜 鳥類</button>
+      <button class="tab" data-target="p3">🦎 爬蟲類</button>
+      <button class="tab" data-target="p4">🦔 雪貂・刺蝟等</button>
+    </div>
+    <div class="panel active" id="p1"><div class="card"><h3>兔子、天竺鼠、倉鼠、龍貓等</h3><ul>
+      <li>體型小,藥量以極小的 ml 計算,飼主可能難以精準給藥。</li>
+      <li>食慾與排便量是重要警訊,記錄需求高。</li>
+      <li>部分藥物對小型草食動物有特殊風險,飼主需明確遵守醫囑。<span class="tag">待訪談確認</span></li>
+      <li>餵藥可能造成壓力,需要餵藥方式與技巧的說明。</li></ul></div></div>
+    <div class="panel" id="p2"><div class="card"><h3>鸚鵡、文鳥等鳥類</h3><ul>
+      <li>鳥類常不易顯露病徵,每日體重(公克)與進食量的追蹤可能很重要。<span class="tag">待訪談確認</span></li>
+      <li>餵藥需保定,飼主可能缺乏安全操作的知識。</li>
+      <li>飲食、環境與健康關聯高,需要記錄飼料與環境資訊。</li></ul></div></div>
+    <div class="panel" id="p3"><div class="card"><h3>鬃獅蜥、守宮、陸龜、蛇等</h3><ul>
+      <li>疾病常與飼養環境(溫度、濕度、紫外線燈)有關,環境紀錄可能比用藥紀錄更重要。<span class="tag">待訪談確認</span></li>
+      <li>進食頻率、蛻皮、排泄狀況需要長期追蹤。</li>
+      <li>專門的爬蟲獸醫較少,看診前整理資料可提高效率。</li></ul></div></div>
+    <div class="panel" id="p4"><div class="card"><h3>雪貂、刺蝟、蜜袋鼯等</h3><ul>
+      <li>不同物種的照護知識差異大,飼主的資訊來源分散。</li>
+      <li>疫苗、用藥與常見疾病資訊較難查詢。<span class="tag">待訪談確認</span></li>
+      <li>適合作為「照護資訊」功能的重點整理對象。</li></ul></div></div>
+
+    <div class="card" style="margin-top:24px"><h3>跨物種的共同假設</h3><ul>
+      <li>特殊寵物獸醫數量少,每次看診的資料完整度更加重要。</li>
+      <li>不同物種的「重要紀錄項目」不同(體重、環境、飲食…),系統可能需要依物種客製欄位。</li>
+      <li>特殊寵物的用藥可能需要獸醫特別調配,飼主需要保存劑量與保存方式(如冷藏)。</li>
+      <li>飼主的照護知識多來自社群與網路,正確性參差不齊。</li></ul></div>
+  </div>
+</section>
+
+<!-- ④ 使用對象 -->
+<section id="users">
+  <div class="wrap">
+    <h2><span class="num">4</span>預計使用對象</h2>
+    <div class="card">
+      <p>本系統初步以一般寵物飼主為主要使用對象。目前尚未限定特定寵物種類,初步希望了解犬、貓及其他特殊寵物飼主在健康管理與用藥方面的不同需求。</p>
+      <p style="margin-top:10px">後續將透過獸醫訪談及資料蒐集,評估適合優先支援的寵物種類。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ 研究目的 -->
+<section id="purpose" class="alt">
+  <div class="wrap">
+    <h2><span class="num">5</span>專題研究目的</h2>
+    <div class="card">
+      <p>我們希望透過本專題,了解飼主在寵物健康管理及用藥過程中可能遇到的問題,並嘗試利用資訊系統改善資料整理與日常管理上的不便。</p>
+      <p style="margin-top:10px">目前列出的困難與功能皆為初步構想,尚未確認是否符合實際需求,因此希望透過獸醫訪談,了解目前寵物醫療與照護上的常見問題,作為後續系統設計及功能規劃的參考。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 訪談 -->
+<section id="interview">
+  <div class="wrap">
+    <h2><span class="num">★</span>預計向獸醫請教的問題</h2>
+    <p class="lead">訪談時希望釐清的方向。</p>
+    <div class="card">
+      <ol class="q">
+        <li><strong>飼主面:</strong>飼主帶寵物來看診時,最常遺漏或說不清楚的資訊是什麼?</li>
+        <li><strong>用藥面:</strong>飼主在餵藥或給藥時,最常見的錯誤或困難有哪些?(漏餵、劑量、保存方式…)</li>
+        <li><strong>用藥面:</strong>不同物種的用藥,有哪些是飼主一定要知道的注意事項?</li>
+        <li><strong>紀錄面:</strong>如果飼主能事先整理資料,您最希望看到哪些項目?(體重、食量、排便、環境…)</li>
+        <li><strong>特殊寵物:</strong>您認為哪一類特殊寵物的飼主最缺乏資源或資訊?</li>
+        <li><strong>特殊寵物:</strong>特殊寵物的飼養環境紀錄,對診斷的重要程度為何?</li>
+        <li><strong>溝通面:</strong>醫囑通常如何傳達給飼主?(口頭、紙本、藥袋標示)飼主回家後常忘記什麼?</li>
+        <li><strong>風險面:</strong>您認為飼主使用 App 紀錄或提醒時,有哪些該避免的設計或風險?(例如誤導用藥)</li>
+        <li><strong>資訊面:</strong>目前網路上的寵物照護資訊,常見的錯誤觀念有哪些?</li>
+        <li><strong>整體:</strong>如果有一個這樣的系統,您會希望它具備哪些功能?哪些功能其實沒有必要?</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">🐾 藥你管|畢業專題(概念階段)<br>本站內容僅為專題構想,不構成任何醫療建議,寵物健康問題請諮詢獸醫師。</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

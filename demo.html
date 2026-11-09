@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>互動示範｜藥你管</title>
+<meta name="theme-color" content="#d9f0fa">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body class="demo-page">
+
+<header class="nav">
+  <div class="wrap">
+    <a href="index.html" class="logo">🐾 藥你管 <small class="logo-sub">互動示範</small></a>
+    <a class="btn small ghost" href="index.html">← 回介紹頁</a>
+  </div>
+</header>
+
+<main class="wrap demo">
+  <div class="note">
+    🧪 這是<strong>概念示範版</strong>,用來讓獸醫與同學體驗流程。資料只存在「這台裝置的瀏覽器」,不會上傳。
+    本系統不提供任何醫療或劑量建議,請依獸醫師指示填寫。
+  </div>
+
+  <!-- 寵物列 -->
+  <div class="petbar" id="petBar"></div>
+
+  <!-- 尚未新增寵物 -->
+  <div class="card welcome" id="empty" hidden>
+    <span class="ico">🐾</span>
+    <h3>歡迎來到藥你管!</h3>
+    <p>先新增一隻寵物開始體驗,或載入範例資料(一隻兔子與一隻鬃獅蜥)快速看看效果。</p>
+    <div class="btn-row">
+      <button class="btn" type="button" id="addPetBtn2">＋ 新增寵物</button>
+      <button class="btn ghost" type="button" id="sampleBtn">載入範例資料</button>
+    </div>
+  </div>
+
+  <div id="app" hidden>
+    <div class="petinfo" id="petInfo"></div>
+
+    <div class="remind-row">
+      <span>🔔 <b>網頁提醒</b>:到餵藥時間,頁面上方會跳出提醒(需保持此網頁開啟)</span>
+      <span class="remind-btns">
+        <button type="button" class="btn small ghost" id="testRemindBtn">測試提醒</button>
+        <button type="button" class="btn small ghost" id="soundBtn">🔕 提示音:關</button>
+      </span>
+    </div>
+
+    <div class="tabs maintabs" role="tablist">
+      <button class="tab active" data-tab="today">📅 今日用藥</button>
+      <button class="tab" data-tab="meds">💊 用藥排程</button>
+      <button class="tab" data-tab="records">📈 健康紀錄</button>
+      <button class="tab" data-tab="summary">📋 看診摘要</button>
+    </div>
+
+    <!-- 今日用藥 -->
+    <section class="tabpanel active" id="tab-today">
+      <div class="card">
+        <h3>今天的用藥待辦</h3>
+        <div class="progress-label" id="todayLabel"></div>
+        <div class="bar big"><i id="todayBar" style="width:0%"></i></div>
+        <ul class="todo" id="todayList"></ul>
+      </div>
+    </section>
+
+    <!-- 用藥排程 -->
+    <section class="tabpanel" id="tab-meds">
+      <div class="card">
+        <h3>新增用藥排程</h3>
+        <p class="hint">請依獸醫師開立的內容填寫。</p>
+        <form id="medForm" class="form">
+          <div class="field"><label for="medName">藥物名稱</label>
+            <input id="medName" required maxlength="40" placeholder="例如:藥物 A"></div>
+          <div class="field"><label for="medDose">劑量與方式</label>
+            <input id="medDose" maxlength="40" placeholder="例如:口服 0.3 ml"></div>
+          <div class="field"><label for="medFreq">每日次數</label>
+            <select id="medFreq">
+              <option value="1">1 次</option><option value="2" selected>2 次</option>
+              <option value="3">3 次</option><option value="4">4 次</option>
+            </select></div>
+          <div class="field"><label>餵藥時間</label>
+            <div class="times" id="medTimes"></div></div>
+          <div class="field"><label for="medStart">開始日期</label>
+            <input id="medStart" type="date" required></div>
+          <div class="field"><label for="medEnd">結束日期(可留白)</label>
+            <input id="medEnd" type="date"></div>
+          <div class="field full"><label for="medNote">備註(例如:飯後、需冷藏、搖勻)</label>
+            <input id="medNote" maxlength="80"></div>
+          <div class="field full"><button class="btn" type="submit">加入排程</button></div>
+        </form>
+      </div>
+      <div class="card" style="margin-top:20px">
+        <h3>目前與過去的用藥</h3>
+        <ul class="list" id="medList"></ul>
+      </div>
+    </section>
+
+    <!-- 健康紀錄 -->
+    <section class="tabpanel" id="tab-records">
+      <div class="card">
+        <h3>新增健康紀錄</h3>
+        <p class="hint">本系統只負責記錄,不判斷數值是否正常;不同物種標準不同,請詢問獸醫。爬蟲類的環境溫度可寫在備註。</p>
+        <form id="recForm" class="form">
+          <div class="field"><label for="recDate">日期</label>
+            <input id="recDate" type="date" required></div>
+          <div class="field"><label for="recWeight" id="wLabel">體重</label>
+            <input id="recWeight" type="number" step="any" min="0" inputmode="decimal"></div>
+          <div class="field"><label for="recTemp">體溫(°C)</label>
+            <input id="recTemp" type="number" step="0.1" min="20" max="50" inputmode="decimal"></div>
+          <div class="field"><label for="recAppetite">食慾</label>
+            <select id="recAppetite"><option value="">未記錄</option><option>正常</option><option>減少</option><option>幾乎不吃</option><option>增加</option></select></div>
+          <div class="field"><label for="recActivity">活動力</label>
+            <select id="recActivity"><option value="">未記錄</option><option>正常</option><option>較低</option><option>較亢奮</option></select></div>
+          <div class="field"><label for="recStool">排便</label>
+            <select id="recStool"><option value="">未記錄</option><option>正常</option><option>偏軟</option><option>偏硬或量少</option><option>腹瀉</option><option>無排便</option></select></div>
+          <div class="field full"><label for="recNote">備註</label>
+            <input id="recNote" maxlength="100" placeholder="例如:今天躲著不太動"></div>
+          <div class="field full"><button class="btn" type="submit">儲存紀錄</button></div>
+        </form>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <div class="chart-head">
+          <h3>趨勢圖</h3>
+          <div class="seg">
+            <button class="seg-btn active" data-metric="weight" type="button">體重</button>
+            <button class="seg-btn" data-metric="temp" type="button">體溫</button>
+          </div>
+        </div>
+        <div id="chart" class="chart"></div>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3>紀錄列表</h3>
+        <div class="table-wrap"><table class="rec-table" id="recTable"></table></div>
+        <p class="hint" style="margin-top:10px">體重變化欄的標示僅為示意(降幅 5% 以上會標色),實際判斷標準請詢問獸醫。</p>
+      </div>
+    </section>
+
+    <!-- 看診摘要 -->
+    <section class="tabpanel" id="tab-summary">
+      <div class="card">
+        <h3>給獸醫看的看診摘要</h3>
+        <p class="hint">依目前資料自動整理,看診前複製或列印即可。</p>
+        <div class="field full"><label for="petQuestion">這次想問獸醫的事(會一起放進摘要)</label>
+          <textarea id="petQuestion" rows="3" maxlength="300" placeholder="例如:最近食量變少,需要做哪些檢查?"></textarea></div>
+        <pre class="summary" id="summaryOut"></pre>
+        <div class="btn-row">
+          <button class="btn" type="button" id="copyBtn">📋 複製摘要</button>
+          <button class="btn ghost" type="button" id="printBtn">🖨 列印</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="reset-row"><button class="link-btn" type="button" id="resetBtn">清除所有示範資料</button></p>
+  </div>
+</main>
+
+<!-- 新增寵物對話框 -->
+<dialog id="petDialog">
+  <form id="petForm" class="form single">
+    <h3>新增寵物</h3>
+    <div class="field"><label for="petName">名字</label>
+      <input id="petName" required maxlength="20" placeholder="例如:麻糬"></div>
+    <div class="field"><label for="petSpecies">種類</label>
+      <select id="petSpecies"></select></div>
+    <div class="field"><label for="petBirth">生日(約略即可,可留白)</label>
+      <input id="petBirth" type="date"></div>
+    <div class="field"><label for="petUnit">體重單位</label>
+      <select id="petUnit"><option value="g">公克 (g)</option><option value="kg">公斤 (kg)</option></select></div>
+    <div class="btn-row">
+      <button class="btn" type="submit">新增</button>
+      <button class="btn ghost" type="button" id="petCancel">取消</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- 網頁內提醒卡會出現在這裡 -->
+<div class="toasts" id="toasts" aria-live="assertive"></div>
+
+<footer>
+  <div class="wrap">🐾 藥你管|畢業專題(概念示範)<br>資料僅存於本機瀏覽器,不構成任何醫療建議,寵物健康問題請諮詢獸醫師。</div>
+</footer>
+
+<script src="demo.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/* =========================================================
+   藥你管|淺色可愛海洋風
+   結構:變數 → 基礎 → 導覽列 → 首頁 → 區塊/卡片 → 預覽 → 分頁 → 響應式
+   ========================================================= */
+
+/* ---------- 色彩與變數(想換色只改這裡) ---------- */
+:root{
+  --bg:#f3fafd;          /* 頁面底色:極淺海水藍 */
+  --bg-alt:#ffffff;      /* 交錯區塊底色 */
+  --ink:#2f4b5c;         /* 主要文字:柔和海軍藍(不刺眼) */
+  --muted:#6b8796;       /* 次要文字 */
+  --sky:#d9f0fa;         /* 淺天空藍 */
+  --aqua:#7fd1e8;        /* 清澈水藍 */
+  --brand:#3fa9d1;       /* 主色:明亮海藍 */
+  --brand-dark:#2b86ad;  /* 標題強調色 */
+  --mint:#d8f5ec;        /* 薄荷綠 */
+  --peach:#ffd9cc;       /* 蜜桃粉 */
+  --coral:#ff9e87;       /* 珊瑚橘:提醒/警示用 */
+  --sun:#fff1bd;         /* 奶油黃 */
+  --line:#cfe8f1;
+  --radius:22px;
+  --shadow:0 8px 24px rgba(63,169,209,.14);
+  --nav-h:60px;
+}
+
+/* ---------- 基礎 ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);-webkit-text-size-adjust:100%}
+body{
+  font-family:"Huninn","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.85;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img,svg{max-width:100%}
+.wrap{width:100%;max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* ---------- 導覽列 ---------- */
+.nav{position:sticky;top:0;z-index:50;background:rgba(243,250,253,.93);backdrop-filter:blur(10px);border-bottom:2px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.logo{font-weight:700;font-size:1.2rem;color:var(--brand-dark);display:flex;align-items:center;gap:6px}
+.menu{display:flex;gap:6px;list-style:none}
+.menu a{display:block;padding:6px 14px;border-radius:99px;font-size:.93rem;color:var(--muted);transition:.2s}
+.menu a:hover,.menu a.active{background:var(--sky);color:var(--brand-dark)}
+.burger{display:none;width:44px;height:44px;border:none;background:var(--sky);border-radius:14px;cursor:pointer;font-size:1.3rem;color:var(--brand-dark)}
+
+/* ---------- 首頁 Hero ---------- */
+.hero{position:relative;padding:76px 0 120px;text-align:center;background:linear-gradient(180deg,var(--sky) 0%,var(--bg) 100%);overflow:hidden}
+.hero .wrap{position:relative;z-index:2}
+.badge{display:inline-block;background:#fff;border:2px dashed var(--aqua);color:var(--brand-dark);padding:4px 16px;border-radius:99px;font-size:.88rem;margin-bottom:18px}
+.hero h1{font-size:clamp(2.6rem,9vw,4.2rem);letter-spacing:.1em;color:var(--brand-dark);line-height:1.2;text-shadow:3px 3px 0 #fff}
+.hero .paw{display:inline-block;animation:wiggle 3s ease-in-out infinite}
+.hero .sub{margin:14px 0 26px;font-size:clamp(1rem,3vw,1.2rem);color:var(--muted)}
+.hero p.desc{max-width:680px;margin:0 auto;background:rgba(255,255,255,.75);border-radius:var(--radius);padding:14px 20px;text-align:left}
+.hero p.desc + p.desc{margin-top:12px}
+.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:70px;z-index:1}
+
+/* 浮動泡泡裝飾 */
+.bubble{position:absolute;border-radius:50%;background:rgba(255,255,255,.65);border:2px solid rgba(127,209,232,.5);animation:float 7s ease-in-out infinite}
+.b1{width:46px;height:46px;left:8%;top:22%}
+.b2{width:26px;height:26px;left:18%;top:62%;animation-delay:1.2s}
+.b3{width:60px;height:60px;right:9%;top:18%;animation-delay:.6s}
+.b4{width:30px;height:30px;right:20%;top:58%;animation-delay:2s}
+.b5{width:18px;height:18px;right:6%;top:75%;animation-delay:3s}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+/* ---------- 區塊 ---------- */
+section{padding:64px 0}
+section.alt{background:var(--bg-alt)}
+section h2{font-size:clamp(1.3rem,4vw,1.7rem);margin-bottom:8px;display:flex;align-items:center;gap:10px;color:var(--brand-dark)}
+.num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--brand);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 3px 0 var(--brand-dark)}
+.lead{color:var(--muted);margin-bottom:26px}
+
+/* ---------- 卡片 ---------- */
+.grid{display:grid;gap:20px;grid-template-columns:repeat(3,1fr)}
+.card{background:#fff;border:2px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);transition:transform .2s}
+.card:hover{transform:translateY(-4px)}
+section.alt .card{background:var(--bg)}
+.card h3{font-size:1.05rem;margin-bottom:10px;color:var(--brand-dark)}
+.card ul{padding-left:1.1em;font-size:.95rem}
+.card li{margin-bottom:6px}
+.ico{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;font-size:1.7rem;margin-bottom:10px}
+.grid .card:nth-child(4n+1) .ico{background:var(--sky)}
+.grid .card:nth-child(4n+2) .ico{background:var(--mint)}
+.grid .card:nth-child(4n+3) .ico{background:var(--peach)}
+.grid .card:nth-child(4n+4) .ico{background:var(--sun)}
+
+.note{background:var(--sun);border:2px dashed #f0cf6b;border-radius:16px;padding:14px 18px;font-size:.93rem;color:#7a6320;margin-bottom:24px}
+.tag{display:inline-block;font-size:.72rem;background:var(--peach);color:#b3573f;border-radius:8px;padding:1px 8px;margin-left:6px;vertical-align:middle;white-space:nowrap}
+
+/* ---------- 畫面概念預覽 ---------- */
+.mock{display:grid;gap:22px;grid-template-columns:repeat(3,1fr)}
+.phone{background:#fff;border:3px solid var(--aqua);border-radius:30px;padding:20px 18px;box-shadow:var(--shadow)}
+.phone h4{font-size:.95rem;color:var(--muted);margin-bottom:12px;text-align:center}
+.pet{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:16px;background:var(--sky);margin-bottom:10px}
+.pet .face{font-size:1.7rem}
+.pet b{display:block;font-size:.95rem}
+.pet small{color:var(--muted)}
+.med{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:2px dotted var(--line);font-size:.92rem}
+.med:last-child{border:none}
+.med small{color:var(--muted)}
+.pill{flex:none;font-size:.75rem;padding:2px 10px;border-radius:99px;background:var(--mint);color:#2a7a62}
+.pill.warn{background:var(--peach);color:#b3573f}
+.bar{height:10px;background:var(--sky);border-radius:99px;overflow:hidden;margin:4px 0 12px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--aqua),var(--brand));border-radius:99px}
+
+/* ---------- 分頁(特殊寵物) ---------- */
+.tabs{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.tab{border:2px solid var(--line);background:#fff;padding:8px 18px;border-radius:99px;cursor:pointer;font:inherit;font-size:.93rem;color:var(--muted);transition:.2s}
+.tab:hover{border-color:var(--aqua)}
+.tab.active{background:var(--brand);border-color:var(--brand);color:#fff;box-shadow:0 3px 0 var(--brand-dark)}
+.panel{display:none}
+.panel.active{display:block;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- 訪談問題 ---------- */
+ol.q{padding-left:1.3em}
+ol.q li{margin-bottom:12px}
+ol.q strong{color:var(--brand-dark)}
+
+/* ---------- 頁尾 ---------- */
+footer{padding:36px 0;text-align:center;color:var(--muted);font-size:.88rem;background:var(--sky)}
+
+/* =========================================================
+   響應式
+   ≥1025px 桌機 | 721–1024px 平板 | ≤720px 手機
+   ========================================================= */
+
+/* 平板:改為 2 欄 */
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .mock{grid-template-columns:repeat(2,1fr)}
+  .mock .phone:last-child{grid-column:1 / -1;max-width:520px;margin:0 auto;width:100%}
+  .menu a{padding:6px 10px;font-size:.88rem}
+}
+
+/* 手機:單欄 + 漢堡選單 */
+@media (max-width:720px){
+  .burger{display:block}
+  .menu{
+    position:absolute;top:var(--nav-h);left:0;right:0;flex-direction:column;gap:0;
+    background:#fff;border-bottom:2px solid var(--line);padding:8px 16px 14px;
+    display:none;box-shadow:0 12px 20px rgba(63,169,209,.12);
+  }
+  .menu.open{display:flex}
+  .menu a{padding:12px 14px;font-size:1rem}
+  .hero{padding:52px 0 96px}
+  .hero p.desc{padding:12px 16px;font-size:.95rem}
+  .bubble.b3,.bubble.b4{display:none}
+  section{padding:46px 0}
+  .grid,.mock{grid-template-columns:1fr}
+  .mock .phone:last-child{max-width:none}
+  .card{padding:18px}
+  .phone{max-width:420px;margin:0 auto;width:100%}
+  /* 分頁在手機上可橫向滑動,避免換成很多行 */
+  .tabs{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+  .tab{flex:none}
+}
+
+/* ---------- 按鈕(首頁與示範頁共用) ---------- */
+.btn{display:inline-block;border:none;cursor:pointer;font:inherit;font-size:1rem;background:var(--brand);color:#fff;padding:10px 24px;border-radius:99px;box-shadow:0 4px 0 var(--brand-dark);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--brand-dark)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--brand-dark)}
+.btn.ghost{background:#fff;color:var(--brand-dark);border:2px solid var(--aqua);box-shadow:0 3px 0 var(--aqua)}
+.btn.small{padding:6px 16px;font-size:.88rem;box-shadow:0 3px 0 var(--aqua)}
+.cta{margin-top:22px}
+.menu a.try{background:var(--peach);color:#b3573f}
+
+/* 尊重系統「減少動態效果」設定 */
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+}
