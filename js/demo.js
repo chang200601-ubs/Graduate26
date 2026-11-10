@@ -129,7 +129,8 @@
     $('petInfo').innerHTML =
       '<div class="who"><span class="face">' + speciesInfo(pet.species).e + '</span><div><b>' + esc(pet.name) +
       '</b><small>' + esc(pet.species) + '・年齡 ' + ageText(pet.birthday) + '・體重單位 ' + pet.unit + '</small></div></div>' +
-      '<button type="button" class="link-btn" id="delPetBtn">刪除這隻寵物</button>';
+      '<span class="petinfo-acts"><button type="button" class="btn small ghost" id="editPetBtn">✏️ 編輯資料</button> ' +
+      '<button type="button" class="link-btn" id="delPetBtn">刪除這隻寵物</button></span>';
     $('wLabel').textContent = '體重(' + pet.unit + ')';
     $('petQuestion').value = pet.question || '';
   }
@@ -334,9 +335,20 @@
     if (name === 'summary') renderSummary();
   }
 
-  function openPetDialog() {
+  var editingPetId = null;   // null = 新增模式;有值 = 編輯該隻寵物
+  function openPetDialog(pet) {
     $('petForm').reset();
-    $('petUnit').value = speciesInfo($('petSpecies').value).u;
+    editingPetId = pet ? pet.id : null;
+    $('petDialogTitle').textContent = pet ? '編輯寵物資料' : '新增寵物';
+    $('petSubmitBtn').textContent = pet ? '儲存' : '新增';
+    if (pet) {
+      $('petName').value = pet.name;
+      $('petSpecies').value = pet.species;
+      $('petBirth').value = pet.birthday || '';
+      $('petUnit').value = pet.unit;
+    } else {
+      $('petUnit').value = speciesInfo($('petSpecies').value).u;
+    }
     var d = $('petDialog');
     if (d.showModal) d.showModal(); else d.setAttribute('open', '');
   }
@@ -492,7 +504,8 @@
       if (soundOn) beep();
       return;
     }
-    if (el.id === 'addPetBtn' || el.id === 'addPetBtn2') { openPetDialog(); return; }
+    if (el.id === 'addPetBtn' || el.id === 'addPetBtn2') { openPetDialog(null); return; }
+    if (el.id === 'editPetBtn') { var ep = curPet(); if (ep) openPetDialog(ep); return; }
     if (el.id === 'petCancel') { closePetDialog(); return; }
     if (el.id === 'sampleBtn') { loadSample(); return; }
 
@@ -567,6 +580,31 @@
     e.preventDefault();
     var name = $('petName').value.trim();
     if (!name) return;
+
+    // 編輯模式:更新既有寵物,保留 id、紀錄與用藥
+    if (editingPetId) {
+      var ep = null;
+      state.pets.forEach(function (x) { if (x.id === editingPetId) ep = x; });
+      if (ep) {
+        var newUnit = $('petUnit').value;
+        if (newUnit !== ep.unit) {
+          var recs = petRecords(ep.id).filter(function (r) { return r.weight != null; });
+          if (recs.length && confirm('體重單位由 ' + ep.unit + ' 改為 ' + newUnit +
+              '。\n要把已記錄的 ' + recs.length + ' 筆體重自動換算嗎?\n(按「確定」會換算;按「取消」則保留原數字)')) {
+            var factor = ep.unit === 'g' ? 0.001 : 1000;
+            recs.forEach(function (r) { r.weight = Math.round(r.weight * factor * 10000) / 10000; });
+          }
+          ep.unit = newUnit;
+        }
+        ep.name = name;
+        ep.species = $('petSpecies').value;
+        ep.birthday = $('petBirth').value;
+      }
+      editingPetId = null;
+      save(); closePetDialog(); renderAll();
+      return;
+    }
+
     var p = { id: uid(), name: name, species: $('petSpecies').value, birthday: $('petBirth').value, unit: $('petUnit').value, question: '' };
     state.pets.push(p); state.current = p.id;
     save(); closePetDialog(); renderAll();

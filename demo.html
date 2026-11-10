@@ -110,7 +110,7 @@
             <input id="recDate" type="date" required></div>
           <div class="field"><label for="recWeight" id="wLabel">體重</label>
             <input id="recWeight" type="number" step="any" min="0" inputmode="decimal"></div>
-          <div class="field"><label for="recTemp">體溫(°C)</label>
+          <div class="field"><label for="recTemp">環境溫度(°C)</label>
             <input id="recTemp" type="number" step="0.1" min="20" max="50" inputmode="decimal"></div>
           <div class="field"><label for="recAppetite">食慾</label>
             <select id="recAppetite"><option value="">未記錄</option><option>正常</option><option>減少</option><option>幾乎不吃</option><option>增加</option></select></div>
@@ -164,7 +164,7 @@
 <!-- 新增寵物對話框 -->
 <dialog id="petDialog">
   <form id="petForm" class="form single">
-    <h3>新增寵物</h3>
+    <h3 id="petDialogTitle">新增寵物</h3>
     <div class="field"><label for="petName">名字</label>
       <input id="petName" required maxlength="20" placeholder="例如:麻糬"></div>
     <div class="field"><label for="petSpecies">種類</label>
@@ -174,7 +174,7 @@
     <div class="field"><label for="petUnit">體重單位</label>
       <select id="petUnit"><option value="g">公克 (g)</option><option value="kg">公斤 (kg)</option></select></div>
     <div class="btn-row">
-      <button class="btn" type="submit">新增</button>
+      <button class="btn" type="submit" id="petSubmitBtn">新增</button>
       <button class="btn ghost" type="button" id="petCancel">取消</button>
     </div>
   </form>
